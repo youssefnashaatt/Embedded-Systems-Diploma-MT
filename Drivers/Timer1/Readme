@@ -1,0 +1,29 @@
+Timer1 Module Driver for AVR
+Driver is designed using interrupts with call back technique
+Driver support both Normal(Overflow) and Compare mode.
+Module Configuration:
+- Create a structure in Main.
+    Structure Members:
+    1- Inital value.
+    2- Compare value (Used only in compare mode)
+    3- Prescaler
+    4- Timer mode
+- Fill structure members with the values needed in project.
+- Pass the address of this structure as a parameter in Initialization function.
+
+
+
+Driver's Functions:
+
+1- Initialization and Start Function: void Timer1_init(const Timer1_ConfigType * Config_Ptr)
+Functionality: Used in iniatializing Timer1 according to configurations setup in (Timer1_ConfigType pre-defined structure).
+
+2- Stop Timer: void Timer1_deInit(void)
+Functionality: Stop Timer counting and reset all configurations
+
+3- Set Call Back Function: void Timer1_setCallBack(void(*a_ptr)(void))
+Functionality: Set any desired function as call back function of the module, so it is directly executed whenever timer's interrupt occurred.
+
+4- ISR(Timer1_Overflow mode)
+5- ISR(Timer1_Compare mode)
+Both ISRs are respnsible for directly calling the call back function defined and implemented by the user.
